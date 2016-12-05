@@ -774,8 +774,8 @@ sub _kill_session
       );
 
       $this->_send_msg($buffer,1);
-      $this->_close_session();
     };
+    $this->_close_session();
 
     # invoke user callback function
     $this->parent->error_callback($error);

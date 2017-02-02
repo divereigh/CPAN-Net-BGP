@@ -153,7 +153,10 @@ sub BGP_CAPABILITY_REFRESH_OLD { 128 }
         undef,                                 # BGP_EVENT_CONNECT_RETRY_TIMER_EXPIRED
         \&_handle_hold_timer_expired,          # BGP_EVENT_HOLD_TIMER_EXPIRED
         undef,                                 # BGP_EVENT_KEEPALIVE_TIMER_EXPIRED
-        \&_handle_bgp_open_received            # BGP_EVENT_RECEIVE_OPEN_MESSAGE
+        \&_handle_bgp_open_received,           # BGP_EVENT_RECEIVE_OPEN_MESSAGE
+        undef,                                 # BGP_EVENT_RECEIVE_KEEP_ALIVE_MESSAGE
+        undef,                                 # BGP_EVENT_RECEIVE_UPDATE_MESSAGE
+        \&_handle_receive_notification_message,# BGP_EVENT_RECEIVE_NOTIFICATION_MESSAGE
     ],
     [                                          # OpenConfirm
         \&_handle_bgp_fsm_error,               # Default transition

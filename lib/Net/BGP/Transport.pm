@@ -659,8 +659,8 @@ sub _handle_socket_read_ready
     my $socket = $this->{_peer_socket};
 
     unless (defined $socket) {
-      warn $this->parent->asstring . ": Connection lost - Connection is formaly shutdown now\n";
-      $this->_cease;
+      warn $this->parent->asstring . ": Connection lost - Connection is fully shutdown now\n";
+      $this->_kill_session;
       return;
     }
 
@@ -777,8 +777,8 @@ sub _kill_session
       );
 
       $this->_send_msg($buffer,1);
-      $this->_close_session();
     };
+    $this->_close_session();
 
     # invoke user callback function
     $this->parent->error_callback($error);
